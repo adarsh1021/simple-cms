@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.0.0-rc.1",
+    "@supabase/auth-helpers-nextjs": "^0.2.7",
+    "@supabase/auth-helpers-react": "^0.2.3",
+    "@supabase/supabase-js": "^1.35.6",
+    "@supabase/ui": "^0.36.5",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
