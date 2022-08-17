@@ -1,5 +1,11 @@
+import BaseLayout from "../../layouts/BaseLayout";
+
 const Dashboard = () => {
-  return "hi";
+  return (
+    <BaseLayout>
+      <DashboardView />
+    </BaseLayout>
+  );
 };
 
 export default Dashboard;

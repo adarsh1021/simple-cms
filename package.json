@@ -9,6 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.10.1",
     "@supabase/auth-helpers-nextjs": "^0.2.7",
     "@supabase/auth-helpers-react": "^0.2.3",
     "@supabase/supabase-js": "^1.35.6",
