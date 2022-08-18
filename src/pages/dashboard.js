@@ -1,9 +1,9 @@
 import { useUser } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
-import CreateProjectDialog from "../../components/CreateProjectDialog";
-import BaseLayout from "../../layouts/BaseLayout";
-import project from "../../services/project";
-import DashboardView from "./DashBoardView";
+import CreateProjectDialog from "../components/CreateProjectDialog";
+import BaseLayout from "../layouts/BaseLayout";
+import project from "../services/project";
+import DashboardView from "../components/dashboard/DashBoardView";
 
 const Dashboard = () => {
   const userContext = useUser();

@@ -1,10 +1,10 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import ProjectCard from "../../components/ProjectCard";
+import ProjectCard from "../ProjectCard";
 
 const DashboardView = ({ projects, createNewProject }) => {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Box
         sx={{
           my: "2rem",

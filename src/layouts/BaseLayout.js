@@ -5,7 +5,9 @@ const BaseLayout = ({ children }) => {
   return (
     <>
       <Navbar />
-      <Container maxWidth={false}>{children}</Container>
+      <Container sx={{ mt: "3rem" }} maxWidth={false}>
+        {children}
+      </Container>
     </>
   );
 };
