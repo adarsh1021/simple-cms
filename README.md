@@ -3,6 +3,10 @@
 Simple CMS is the simplest realtime CMS, built with the awesome Supabase as part of the [Launch Week 5 Hackathon](https://www.madewithsupabase.com/launch-week-5)!  
 Check it out at - https://simple-cms.vercel.app/
 
+## Demo
+
+![Realtime News](/demo/realtime-news.mov)
+
 ## About
 
 Current CMS systems out there are either built for blogs or have a complex system for building and manipulating with strucutred data. Simple CMS was built with the following goals in mind:
@@ -14,6 +18,13 @@ Current CMS systems out there are either built for blogs or have a complex syste
 
 Some use cases I can think of for simple use cases are blogs, copy on websites, message / job boards, news feeds that update in realtime, handling live scores for sports or other events or any real time system that reuqires information to be broadcasted.
 
+## How Supabase is Used
+
+- Supabase Auth for authentication.
+- Store the data and relationship between projects, collections and items in PostgreSQL tables.
+- Supabase realtime to broadcast changes to items.
+- [WIP feature] Supabase storage for handling media uploads. (not sure if this will be done before the hackathon ends)
+
 ## Usage
 
 The first step is to create project. A project is the top level in the logical information heierarchy. Examples - My Blog, Supabase Launch Week Updates, Jobs at Supabase, High School Football Tournament etc..
@@ -23,8 +34,6 @@ Projects have collections in them. A collection is a way to categorize related i
 Collections are made up of items. Item is the actual content that needs to be published and updated in real time. In case of a blog, each item can be a post. For a daily news website, each item can be a news. For a job board, each item can correspond to a job listing.
 
 ![Hierarchy of information](/demo/hierarchy.png)
-
-## Demo
 
 ## Team
 
