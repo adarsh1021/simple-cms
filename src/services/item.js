@@ -13,8 +13,13 @@ const get = async (id) => {
   return { data: data[0], err };
 };
 
+const update = async (id, metadata, data) => {
+  return await supabase.from("item").update({ data, metadata }).match({ id });
+};
+
 export default {
   create,
   list,
   get,
+  update,
 };

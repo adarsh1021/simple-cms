@@ -14,6 +14,7 @@ const ItemsList = ({ items, onItemClick, currItem }) => {
     <List>
       {items.map((item) => (
         <ListItemButton
+          key={item.id}
           onClick={() => onItemClick(item)}
           selected={item.id === currItem?.id}
         >

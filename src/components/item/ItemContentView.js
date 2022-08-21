@@ -1,6 +1,16 @@
-import { Box, Paper, Stack, Typography, Button } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import {
+  Box,
+  Paper,
+  Stack,
+  Typography,
+  Button,
+  Grid,
+  IconButton,
+} from "@mui/material";
 
-const ItemContentView = ({ item, onClickCreateKVPair }) => {
+const ItemContentView = ({ item, onClickCreateKVPair, onClickEditKVPair }) => {
   return (
     <Paper sx={{ p: "1rem" }} elevation={6}>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -16,6 +26,31 @@ const ItemContentView = ({ item, onClickCreateKVPair }) => {
           Create Key-Value Pair
         </Button>
       </Stack>
+      <Grid container spacing={3} sx={{ mt: 2, alignItems: "center" }}>
+        {Object.keys(item.data).map((key) => (
+          <>
+            <Grid item lg={1}>
+              <Stack direction="row">
+                <IconButton onClick={() => onClickEditKVPair(key)}>
+                  <EditIcon />
+                </IconButton>
+                <IconButton>
+                  <DeleteIcon />
+                </IconButton>
+              </Stack>
+            </Grid>
+            <Grid item lg={4}>
+              {key}
+            </Grid>
+            <Grid item lg={2}>
+              {item.metadata[key].type}
+            </Grid>
+            <Grid item lg={5}>
+              {item.data[key]}
+            </Grid>
+          </>
+        ))}
+      </Grid>
     </Paper>
   );
 };

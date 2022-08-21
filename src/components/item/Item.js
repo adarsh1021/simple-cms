@@ -1,23 +1,74 @@
 import { Button, Grid, Stack, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CreateItemDialog from "./CreateItemDialog";
 import ItemsList from "./ItemsList";
-
+// import { supabase } from "../../utils/supabaseClient";
 import itemService from "../../services/item";
 import ItemContentView from "./ItemContentView";
 import CreateKVPairDialog from "./CreateKVPairDialog";
+import { supabaseClient } from "@supabase/auth-helpers-nextjs";
+import { useUser } from "@supabase/auth-helpers-react";
 
 const Item = ({ collection }) => {
   const [items, setItems] = useState([]);
   const [currItem, setCurrItem] = useState(null);
   const [createItemDialogOpen, setCreateItemDialogOpen] = useState(false);
   const [createKVPairDialogOpen, setCreateKVPairDialogOpen] = useState(false);
+  const [editKVPairDefaults, setEditKVPairDefaults] = useState(null);
+
+  const isSubscribed = useRef(false);
+  const user = useUser();
 
   useEffect(() => {
     if (collection) {
       loadAllItems();
     }
+
+    // if (user) {
+    //   const mySubscription = supabaseClient
+    //     .from("item")
+    //     .on("*", (payload) => {
+    //       console.log(payload);
+    //     })
+    //     .subscribe(console.log);
+    // }
+
+    // This is a hack for React >= v18 in Strict mode
+    // ensures to always call on the last  mount and
+    // correctly remove subscription on unmount
+    let subscription = null;
+    const timer = setTimeout(() => (subscription = subscribeToTable()), 1000);
+
+    function subscribeToTable() {
+      return supabaseClient
+        .from("item")
+        .on("*", (payload) => {
+          console.log("Change received!", payload);
+          handleItemRealtimeUpdate(payload);
+        })
+        .subscribe((msg) => {
+          if (msg === "SUBSCRIBED") {
+            isSubscribed.current = true;
+          }
+        });
+    }
+
+    return () => {
+      if (!subscription) {
+        return clearTimeout(timer);
+      }
+
+      supabaseClient.removeSubscription(subscription);
+      isSubscribed.current = false;
+    };
   }, [collection]);
+
+  const handleItemRealtimeUpdate = (data) => {
+    const newItem = data.new;
+    if (newItem.id === currItem.id) {
+      setCurrItem(newItem);
+    }
+  };
 
   const loadAllItems = async () => {
     const { data, err } = await itemService.list(collection.id);
@@ -41,7 +92,24 @@ const Item = ({ collection }) => {
     setCurrItem(item);
   };
 
-  const handleCreateKVPair = () => {};
+  const handleCreateKVPair = async ({ key, value, type }) => {
+    const metadata = currItem.metadata || {};
+    const data = currItem.data || {};
+    metadata[key] = { type: type };
+    data[key] = value;
+    await itemService.update(currItem.id, metadata, data);
+    setCreateKVPairDialogOpen(false);
+    setEditKVPairDefaults(null);
+  };
+
+  const onClickEditKVPair = (key) => {
+    setEditKVPairDefaults({
+      key,
+      type: currItem.metadata[key]?.type,
+      data: currItem.data[key],
+    });
+    setCreateKVPairDialogOpen(true);
+  };
 
   return (
     <>
@@ -74,6 +142,7 @@ const Item = ({ collection }) => {
             <ItemContentView
               item={currItem}
               onClickCreateKVPair={() => setCreateKVPairDialogOpen(true)}
+              onClickEditKVPair={onClickEditKVPair}
             />
           )}
         </Grid>
@@ -85,8 +154,12 @@ const Item = ({ collection }) => {
       />
       <CreateKVPairDialog
         open={createKVPairDialogOpen}
-        handleClose={() => setCreateKVPairDialogOpen(false)}
+        handleClose={() => {
+          setCreateKVPairDialogOpen(false);
+          setEditKVPairDefaults(null);
+        }}
         handleCreateKVPair={handleCreateKVPair}
+        defaults={editKVPairDefaults}
       />
     </>
   );

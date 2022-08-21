@@ -33,6 +33,7 @@ const CollectionsList = ({
         <List>
           {collections.map((collection) => (
             <ListItemButton
+              key={collection.id}
               onClick={() => onCollectionClick(collection)}
               selected={collection.id === currCollection?.id}
             >
