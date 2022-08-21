@@ -12,11 +12,14 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { useRouter } from "next/router";
+import { supabaseClient } from "@supabase/auth-helpers-nextjs";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = [{ name: "Projects", link: "/dashboard" }];
+const settings = ["Dashboard"];
 
 const Navbar = () => {
+  const router = useRouter();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -86,8 +89,14 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem
+                  key={page.name}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    router.push(page.link);
+                  }}
+                >
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -114,11 +123,14 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.name}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  router.push(page.link);
+                }}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
@@ -150,6 +162,12 @@ const Navbar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem
+                key="logout"
+                onClick={() => supabaseClient.auth.signOut()}
+              >
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

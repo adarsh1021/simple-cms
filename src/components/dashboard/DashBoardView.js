@@ -25,7 +25,7 @@ const DashboardView = ({ projects, createNewProject }) => {
       </Box>
       <Grid container spacing={2}>
         {projects.map((project) => (
-          <Grid item sm={4}>
+          <Grid key={project.id} item sm={4}>
             <ProjectCard project={project} />
           </Grid>
         ))}

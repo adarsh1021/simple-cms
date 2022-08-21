@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import { useUser } from "@supabase/auth-helpers-react";
 import { Auth } from "@supabase/ui";
 import { useRouter } from "next/router";
@@ -15,12 +16,14 @@ const Login = () => {
   }, [userContext]);
 
   return (
-    <Auth
-      supabaseClient={supabase}
-      providers={["google", "facebook", "github"]}
-      socialLayout="horizontal"
-      socialButtonSize="xlarge"
-    />
+    <Container maxWidth="xs">
+      <Auth
+        supabaseClient={supabase}
+        providers={["google", "facebook", "github"]}
+        socialLayout="horizontal"
+        socialButtonSize="xlarge"
+      />
+    </Container>
   );
 };
 
