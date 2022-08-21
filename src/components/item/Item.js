@@ -7,7 +7,6 @@ import itemService from "../../services/item";
 import ItemContentView from "./ItemContentView";
 import CreateKVPairDialog from "./CreateKVPairDialog";
 import { supabaseClient } from "@supabase/auth-helpers-nextjs";
-import { useUser } from "@supabase/auth-helpers-react";
 
 const Item = ({ collection }) => {
   const [items, setItems] = useState([]);
@@ -17,21 +16,11 @@ const Item = ({ collection }) => {
   const [editKVPairDefaults, setEditKVPairDefaults] = useState(null);
 
   const isSubscribed = useRef(false);
-  const user = useUser();
 
   useEffect(() => {
     if (collection) {
       loadAllItems();
     }
-
-    // if (user) {
-    //   const mySubscription = supabaseClient
-    //     .from("item")
-    //     .on("*", (payload) => {
-    //       console.log(payload);
-    //     })
-    //     .subscribe(console.log);
-    // }
 
     // This is a hack for React >= v18 in Strict mode
     // ensures to always call on the last  mount and
@@ -43,7 +32,6 @@ const Item = ({ collection }) => {
       return supabaseClient
         .from("item")
         .on("*", (payload) => {
-          console.log("Change received!", payload);
           handleItemRealtimeUpdate(payload);
         })
         .subscribe((msg) => {
@@ -65,7 +53,7 @@ const Item = ({ collection }) => {
 
   const handleItemRealtimeUpdate = (data) => {
     const newItem = data.new;
-    if (newItem.id === currItem.id) {
+    if (newItem.id === currItem?.id) {
       setCurrItem(newItem);
     }
   };
