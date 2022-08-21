@@ -10,7 +10,7 @@ const CollectionView = ({
 }) => {
   return (
     <Grid container spacing={6}>
-      <Grid item lg={2}>
+      <Grid item lg={3}>
         <CollectionsList
           collections={collections}
           handleCreateNewCollection={handleCreateNewCollection}
@@ -18,7 +18,7 @@ const CollectionView = ({
           currCollection={currCollection}
         />
       </Grid>
-      <Grid item lg={10}>
+      <Grid item lg={9}>
         {currCollection && (
           <>
             <Box>
