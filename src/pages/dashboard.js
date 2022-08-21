@@ -15,8 +15,10 @@ const Dashboard = () => {
     loadAllProjects();
   }, []);
 
-  const createProject = (data) => {
-    project.create({ ...data, created_by: userContext.user.id });
+  const createProject = async (data) => {
+    await project.create({ ...data, created_by: userContext.user.id });
+    loadAllProjects();
+    setCreateProjectDialogOpen(false);
   };
 
   const loadAllProjects = async () => {

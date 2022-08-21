@@ -19,7 +19,6 @@ const Login = () => {
     <Container maxWidth="xs">
       <Auth
         supabaseClient={supabase}
-        providers={["google", "facebook", "github"]}
         socialLayout="horizontal"
         socialButtonSize="xlarge"
       />
