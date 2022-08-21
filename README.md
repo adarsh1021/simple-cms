@@ -7,6 +7,7 @@ Check it out at - https://simple-cms.vercel.app/
 
 https://user-images.githubusercontent.com/22254286/185808311-d0b4e645-b6f2-45a1-acfc-b5f2fd5668d0.mp4
 
+In this demo, we see an example of a real time news website. The new items being added and it appears on the example page in real time. See the example here [https://simple-cms.vercel.app/example/realtime-news](https://simple-cms.vercel.app/example/realtime-news)
 
 ## About
 
