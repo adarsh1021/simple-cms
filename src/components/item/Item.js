@@ -73,6 +73,7 @@ const Item = ({ collection }) => {
       });
       loadAllItems();
       setCreateItemDialogOpen(false);
+      setEditKVPairDefaults(null);
     }
   };
 
