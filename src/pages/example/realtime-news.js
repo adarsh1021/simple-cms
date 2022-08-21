@@ -5,15 +5,15 @@ import useSimpleCMSCollection from "../../hooks/useSimpleCMSCollection";
 const RealtimeNews = () => {
   const { collection, items } = useSimpleCMSCollection(
     supabaseClient,
-    "news-feed"
+    "launch-week-5"
   );
   return (
     <Container maxWidth="sm" sx={{ my: 4 }}>
       <Typography variant="h2" fontWeight="bold">
-        Launch Week 5
+        {collection.title}
       </Typography>
       <Typography sx={{ mt: 2 }} variant="h4" color="textSecondary">
-        All the Supabase Launch Week 5 News in realtime!
+        {collection.description}
       </Typography>
 
       {items
@@ -22,10 +22,8 @@ const RealtimeNews = () => {
         )
         .map((item) => (
           <Paper sx={{ my: 4, p: 2 }} key={item.id}>
-            <Typography variant="h5">{item.data.heading}</Typography>
-            <Typography variant="h3">{item.data.subheading}</Typography>
+            <Typography variant="h3">{item.data.heading}</Typography>
             <Typography variant="body1">{item.data.body}</Typography>
-            {/* {item.name} */}
           </Paper>
         ))}
     </Container>
