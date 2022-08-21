@@ -10,7 +10,7 @@ const RealtimeNews = () => {
   return (
     <Container maxWidth="sm" sx={{ my: 4 }}>
       <Typography variant="h2" fontWeight="bold">
-        {collection?.title}
+        {collection?.name}
       </Typography>
       <Typography sx={{ mt: 2 }} variant="h4" color="textSecondary">
         {collection?.description}
