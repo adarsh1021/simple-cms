@@ -5,7 +5,7 @@ Check it out at - https://simple-cms.vercel.app/
 
 ## Demo
 
-/demo/realtime-news.mov
+/demo/realtime-news.mp4
 
 ## About
 
