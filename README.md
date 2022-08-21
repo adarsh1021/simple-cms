@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Simple CMS
 
-## Getting Started
+Simple CMS is the simplest realtime CMS, built with the awesome Supabase as part of the [Launch Week 5 Hackathon](https://www.madewithsupabase.com/launch-week-5)!  
+Check it out at - https://simple-cms.vercel.app/
 
-First, run the development server:
+## About
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Current CMS systems out there are either built for blogs or have a complex system for building and manipulating with strucutred data. Simple CMS was built with the following goals in mind:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Simplicity - data is stored as key value pairs in JSON.
+- Easy to manage small and large amounts of data.
+- Can handle multiple data formats - text, numbers, rich text, HTML, markdown. Since everything is stored in JSON, any format that can be serialized into a JSON can be supported.
+- Realtime capabilities - any modifications to data are propagated immediately to all subscribers using Supabase realtime.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Some use cases I can think of for simple use cases are blogs, copy on websites, message / job boards, news feeds that update in realtime, handling live scores for sports or other events or any real time system that reuqires information to be broadcasted.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Usage
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The first step is to create project. A project is the top level in the logical information heierarchy. Examples - My Blog, Supabase Launch Week Updates, Jobs at Supabase, High School Football Tournament etc..
 
-## Learn More
+Projects have collections in them. A collection is a way to categorize related information. For example, in case of a blog, a collection can be all posts related to photography. For a daily news website, a collection can correspond to each day. For a job board, "Jobs in Software Engineering" can be a collection.
 
-To learn more about Next.js, take a look at the following resources:
+Collections are made up of items. Item is the actual content that needs to be published and updated in real time. In case of a blog, each item can be a post. For a daily news website, each item can be a news. For a job board, each item can correspond to a job listing.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Hierarchy of information](/demo/hierarchy.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Demo
 
-## Deploy on Vercel
+## Team
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I am the only person on the team. You can find me on twitter [@adarsh-menon](https://twitter.com/adarsh_menon_).
