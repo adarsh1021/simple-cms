@@ -18,7 +18,7 @@ Current CMS systems out there are either built for blogs or have a complex syste
 - Can handle multiple data formats - text, numbers, rich text, HTML, markdown. Since everything is stored in JSON, any format that can be serialized into a JSON can be supported.
 - Realtime capabilities - any modifications to data are propagated immediately to all subscribers using Supabase realtime.
 
-Some use cases I can think of for simple use cases are blogs, copy on websites, message / job boards, news feeds that update in realtime, handling live scores for sports or other events or any real time system that reuqires information to be broadcasted.
+Some use cases I can think of for simple use cases are blogs, copy on websites, message / job boards, news feeds that update in realtime, handling live scores for sports or other events or any real time system that requires information to be broadcasted.
 
 ## How Supabase is Used
 
